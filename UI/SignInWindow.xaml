@@ -1,0 +1,40 @@
+﻿<metro:Window x:Class="RCS.K2.NFLN.UI.SignInWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:metro="http://schemas.codeplex.com/elysium"
+              xmlns:params="http://schemas.codeplex.com/elysium/params"
+              xmlns:controls="clr-namespace:MahApps.Metro.Controls;assembly=MahApps.Metro"
+              xmlns:i="clr-namespace:System.Windows.Interactivity;assembly=System.Windows.Interactivity"
+              xmlns:ei="clr-namespace:Microsoft.Expression.Interactivity.Core;assembly=Microsoft.Expression.Interactions"
+              xmlns:views="clr-namespace:RCS.K2.NFLN.Views"
+              WindowStartupLocation="CenterOwner"
+              Background="#171717"
+              params:Design.Theme="Dark"
+              params:Design.AccentBrush="{x:Static metro:AccentBrushes.Sky}"
+              params:Design.ContrastBrush="White"
+        BorderBrush="{x:Static metro:AccentBrushes.Sky}" BorderThickness="3"
+              FontFamily="/RCS.K2.NFLN;component/Resources/#Gotham" WindowStyle="None"
+        Title="SignInWindow" Height="240" Width="400" ResizeMode="CanMinimize">
+
+    <metro:Window.TitleBar>
+        <Grid Background="{x:Static metro:AccentBrushes.Sky}" MouseLeftButtonDown="DragWindow" Height="35" >
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition/>
+                <ColumnDefinition Width="223"/>
+                <ColumnDefinition Width="30"/>
+                <ColumnDefinition Width="30"/>
+            </Grid.ColumnDefinitions>
+            <StackPanel Orientation="Horizontal" Grid.Column="0">
+                <TextBlock  Margin="10, 0, 0, 0" Text="User Select" VerticalAlignment="Center"
+                           Foreground="White" FontWeight="ExtraLight" FontSize="18"
+                           FontFamily="/RCS.K2.NFLN;component/Resources/#Gotham" />
+            </StackPanel>
+            <Button Grid.Column="2" Content="_" Width="30" HorizontalAlignment="Center" Click="MinimizeWindow" />
+            <Button Grid.Column="3" Content="X" Width="30" HorizontalAlignment="Center" Click="CloseWindow" />
+        </Grid>
+    </metro:Window.TitleBar>
+    
+    <Grid>
+        <views:SignInView/>
+    </Grid>
+</metro:Window>

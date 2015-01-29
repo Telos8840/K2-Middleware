@@ -1,0 +1,49 @@
+﻿<UserControl x:Class="RCS.K2.NFLN.Views.VideoView"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             mc:Ignorable="d" 
+             xmlns:i="http://schemas.microsoft.com/expression/2010/interactivity"
+             xmlns:ei="http://schemas.microsoft.com/expression/2010/interactions"
+             xmlns:model="clr-namespace:RCS.K2.NFLN.Models"     
+             DataContext="{Binding Source={StaticResource Locator}, Path=VideoViewModel}"
+             d:DesignHeight="800" d:DesignWidth="1100">
+    
+    <UserControl.Resources>
+        <DataTemplate x:Key="VideoTemplate" DataType="{x:Type model:VideoModel}">
+            <Grid >
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="250"/>
+                    <ColumnDefinition Width="300"/>
+                    <ColumnDefinition Width="150"/>
+                    <ColumnDefinition Width="300"/>
+                </Grid.ColumnDefinitions>
+                <TextBlock Grid.Column="0" Foreground="White" FontSize="12" Text="{Binding Name}"/>
+                <TextBlock Grid.Column="1" Foreground="White" FontSize="12" Text="{Binding Path}"/>
+                <TextBlock Grid.Column="2" Foreground="White" FontSize="12" Text="{Binding TimeStamp}"/>
+                <TextBlock Grid.Column="3" Foreground="White" FontSize="12" Text="{Binding ID}"/>
+            </Grid>
+        </DataTemplate>
+    </UserControl.Resources>
+
+    <Grid Margin="20">
+        <Grid.RowDefinitions>
+            <RowDefinition Height=".1*"/>
+            <RowDefinition/>
+        </Grid.RowDefinitions>
+        <Grid Grid.Row="0">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="200"/>
+                <ColumnDefinition Width="300"/>
+                <ColumnDefinition Width="200"/>
+                <ColumnDefinition Width="300"/>
+            </Grid.ColumnDefinitions>
+            <TextBlock Grid.Column="0" Text="Clip Name" FontWeight="Bold" Foreground="White" FontSize="22" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+            <TextBlock Grid.Column="1" Text="Path" FontWeight="Bold" Foreground="White" FontSize="22" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+            <TextBlock Grid.Column="2" Text="Length" FontWeight="Bold" Foreground="White" FontSize="22" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+            <TextBlock Grid.Column="3" Text="Video ID" FontWeight="Bold" Foreground="White" FontSize="22" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+        </Grid>
+        <ListBox Margin="0, 5" Grid.Row="1" ItemsSource="{Binding Videos}" ItemTemplate="{StaticResource VideoTemplate}"/>
+    </Grid>
+</UserControl>

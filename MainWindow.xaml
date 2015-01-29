@@ -1,0 +1,213 @@
+﻿<metro:Window x:Class="RCS.K2.NFLN.MainWindow"
+              xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+              xmlns:metro="http://schemas.codeplex.com/elysium"
+              xmlns:params="http://schemas.codeplex.com/elysium/params"
+              xmlns:controls="clr-namespace:MahApps.Metro.Controls;assembly=MahApps.Metro"
+              xmlns:i="clr-namespace:System.Windows.Interactivity;assembly=System.Windows.Interactivity"
+              xmlns:ei="clr-namespace:Microsoft.Expression.Interactivity.Core;assembly=Microsoft.Expression.Interactions"
+              xmlns:views="clr-namespace:RCS.K2.NFLN.Views"
+              WindowStartupLocation="CenterOwner"
+              Background="#171717"
+              params:Design.Theme="Dark"
+              params:Design.AccentBrush="{x:Static metro:AccentBrushes.Sky}"
+              params:Design.ContrastBrush="White"
+              Title="K2 Middleware" Height="900" Width="1150" ResizeMode="CanMinimize"
+              DataContext="{Binding Source={StaticResource Locator}, Path=MainPageViewModel}" 
+              BorderBrush="{x:Static metro:AccentBrushes.Sky}" BorderThickness="3"
+              FontFamily="/RCS.K2.NFLN;component/Resources/#Gotham" WindowStyle="None">
+
+    <metro:Window.TitleBar>
+        <Grid Background="{x:Static metro:AccentBrushes.Sky}" MouseLeftButtonDown="DragWindow" Height="40" >
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition/>
+                <ColumnDefinition Width="915"/>
+                <ColumnDefinition Width="30"/>
+                <!--<ColumnDefinition Width="30"/>-->
+                <ColumnDefinition Width="30"/>
+            </Grid.ColumnDefinitions>
+            <StackPanel Orientation="Horizontal" Grid.Column="0">
+                <TextBlock  Margin="10, 0, 0, 0" Text="NFLN" VerticalAlignment="Center"
+                           Foreground="White" FontWeight="ExtraLight" FontSize="18"
+                           FontFamily="/RCS.K2.NFLN;component/Resources/#Gotham" />
+                <TextBlock Text="Interactive" VerticalAlignment="Center"
+                           Foreground="White" FontWeight="UltraBold" FontSize="18"
+                           FontFamily="/RCS.K2.NFLN;component/Resources/#Gotham" />
+            </StackPanel>
+            <!--<Button Grid.Column="2" Content="?" Width="30" HorizontalAlignment="Center" Click="OpenAboutWindow" />-->
+            <Button Grid.Column="2" Content="_" Width="30" HorizontalAlignment="Center" Click="MinimizeWindow" />
+            <Button Grid.Column="3" Content="X" Width="30" HorizontalAlignment="Center" Click="CloseWindow" />
+        </Grid>
+    </metro:Window.TitleBar>
+
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="1240*"/>
+            <!--<ColumnDefinition Width="259*"/>-->
+        </Grid.ColumnDefinitions>
+        <controls:MetroContentControl>
+            <TabControl Grid.Column="0" TabStripPlacement="Top" HorizontalAlignment="Left" Height="Auto" Width="Auto" VerticalAlignment="Top"
+                        BorderBrush="Transparent">
+                <TabItem Header="K2 Videos">
+                    <views:VideoView/>
+                </TabItem>
+            </TabControl>
+            
+        </controls:MetroContentControl>
+
+        <StackPanel >
+            <TextBlock Foreground="{Binding Color}" Text="{Binding ConString}" Margin="10, 5" FontSize="22" HorizontalAlignment="Right" VerticalAlignment="Center"></TextBlock>
+        </StackPanel>
+
+        <!--<StackPanel Grid.Column="1" Margin="10, 36, 10, 10" HorizontalAlignment="Center" VerticalAlignment="Top" Width="259" Height="840">
+            <GroupBox Header="Viz Device Status" FontSize="15" BorderBrush="DodgerBlue">
+                <StackPanel Orientation="Vertical">
+                    <StackPanel Orientation="Horizontal" Margin="0, 10">
+                        <TextBlock Text="Viz Connection" x:Name="VizLabel" FontSize="15" Margin="20, 0"/>
+                        <metro:ToggleSwitch x:Name="VizStatus" OnHeader="On" OffHeader="Off" IsEnabled="True" IsChecked="{Binding IsVizConnected}" Width="80">
+                            <i:Interaction.Triggers>
+                                <i:EventTrigger EventName="Checked">
+                                    <ei:CallMethodAction TargetObject="{Binding}" MethodName="ConnectViz"/>
+                                </i:EventTrigger>
+                                <i:EventTrigger EventName="Unchecked">
+                                    <ei:CallMethodAction TargetObject="{Binding}" MethodName="DisconnectViz"/>
+                                </i:EventTrigger>
+                            </i:Interaction.Triggers>
+                        </metro:ToggleSwitch>
+                    </StackPanel>
+                    <StackPanel Orientation="Horizontal" Margin="0, 10">
+                        <TextBlock Text="Console" FontSize="15" Margin="20, 0,74, 0"/>
+                        <metro:ToggleSwitch OnHeader="On" OffHeader="Off" IsEnabled="True" IsChecked="{Binding IsConsoleOn}" Width="80">
+                            <i:Interaction.Triggers>
+                                <i:EventTrigger EventName="Checked">
+                                    <ei:CallMethodAction TargetObject="{Binding}" MethodName="TurnOnConsole"/>
+                                </i:EventTrigger>
+                                <i:EventTrigger EventName="Unchecked">
+                                    <ei:CallMethodAction TargetObject="{Binding}" MethodName="TurnOffConsole"/>
+                                </i:EventTrigger>
+                            </i:Interaction.Triggers>
+                        </metro:ToggleSwitch>
+                    </StackPanel>
+                </StackPanel>
+            </GroupBox>
+        </StackPanel>-->
+    </Grid>
+
+    <!--<metro:Window.ApplicationBar>
+        <metro:ApplicationBar>
+            <metro:CommandButton Header="Notification" Click="Notifications">
+                <Rectangle Fill="Black" Stroke="Black" Width="24" Height="12"/>
+            </metro:CommandButton>
+            <metro:CommandButton metro:ApplicationBar.Dock="Right"/>
+        </metro:ApplicationBar>
+    </metro:Window.ApplicationBar>-->
+
+
+    <metro:Window.ApplicationBar>
+        <metro:ApplicationBar>
+            <!--<metro:DropDownCommandButton Header="Viz Config" Click="OpenConfigWindow"
+                                         Margin="{Binding RelativeSource={RelativeSource Self}, Path=(params:General.BoldPadding), Mode=OneWay}">
+                <Glyphs x:Name="ThemeGlyph"
+                        FontUri = "Assets\verdana.ttf"
+                        FontRenderingEmSize="24"
+                        StyleSimulations="BoldSimulation"
+                        UnicodeString="V"
+                        Fill="White"
+                        OriginX="0" OriginY="0"/>
+            </metro:DropDownCommandButton>-->
+            <metro:ToggleCommandButton Header="Console" Click="OpenConsole"
+                                         Margin="{Binding RelativeSource={RelativeSource Self}, Path=(params:General.BoldPadding), Mode=OneWay}">
+                <Glyphs FontUri = "Assets\verdana.ttf"
+                        FontRenderingEmSize="24"
+                        StyleSimulations="BoldSimulation"
+                        UnicodeString="C"
+                        Fill="White"
+                        OriginX="0" OriginY="0"/>
+            </metro:ToggleCommandButton>
+            <!--<metro:DropDownCommandButton Header="Command"
+                                         Margin="{Binding RelativeSource={RelativeSource Self}, Path=(params:General.BoldPadding), Mode=OneWay}">
+                <Glyphs x:Name="AccentGlyph"
+                        FontRenderingEmSize="24"
+                        FontUri = "Assets\verdana.ttf"
+                        StyleSimulations="BoldSimulation"
+                        UnicodeString="B"
+                        Fill="Black"
+                        OriginX="0" OriginY="0"/>
+                <metro:DropDownCommandButton.Submenu>
+                    <metro:Submenu>
+                        <MenuItem Header="Blue">
+                            <MenuItem.Icon>
+                                <Rectangle Fill="{x:Static metro:AccentBrushes.Blue}"
+                                           Width="16" Height="16"/>
+                            </MenuItem.Icon>
+                        </MenuItem>
+                        <MenuItem Header="Green"
+                                  >
+                            <MenuItem.Icon>
+                                <Rectangle Fill="{x:Static metro:AccentBrushes.Green}"
+                                           Width="16" Height="16"/>
+                            </MenuItem.Icon>
+                        </MenuItem>
+                        <MenuItem Header="Viridian"
+                                  >
+                            <MenuItem.Icon>
+                                <Rectangle Fill="{x:Static metro:AccentBrushes.Viridian}"
+                                           Width="16" Height="16"/>
+                            </MenuItem.Icon>
+                        </MenuItem>
+                        <MenuItem Header="Violet"
+                                  >
+                            <MenuItem.Icon>
+                                <Rectangle Fill="{x:Static metro:AccentBrushes.Violet}"
+                                           Width="16" Height="16"/>
+                            </MenuItem.Icon>
+                        </MenuItem>
+                    </metro:Submenu>
+                </metro:DropDownCommandButton.Submenu>
+            </metro:DropDownCommandButton>-->
+            <!--<metro:DropDownCommandButton Header="Command"
+                                         Margin="{Binding RelativeSource={RelativeSource Self}, Path=(params:General.BoldPadding), Mode=OneWay}">
+                <Glyphs x:Name="ContrastGlyph"
+                        FontUri = "Assets\verdana.ttf"
+                        FontRenderingEmSize="24"
+                        StyleSimulations="BoldSimulation"
+                        UnicodeString="C"
+                        Fill="Black"
+                        OriginX="0" OriginY="0"/>
+                <metro:DropDownCommandButton.Submenu>
+                    <metro:Submenu>
+                        <MenuItem Header="White"
+                                  />
+                        <MenuItem Header="Black"
+                                  />
+                    </metro:Submenu>
+                </metro:DropDownCommandButton.Submenu>
+            </metro:DropDownCommandButton>-->
+            
+            <!--<metro:CommandButton Header="Notification"
+                                 Click="Notifications"
+                                 Margin="{Binding RelativeSource={RelativeSource Self}, Path=(params:General.BoldPadding), Mode=OneWay}">
+                <Rectangle Fill="Black"
+                           Stroke="Black"
+                           Width="24" Height="12"/>
+            </metro:CommandButton>-->
+            
+            <!--<metro:DropDownCommandButton Header="More"
+                                         metro:ApplicationBar.Dock="Right"
+                                         Margin="{Binding RelativeSource={RelativeSource Self}, Path=(params:General.BoldPadding), Mode=OneWay}">
+                <Path Data="{StaticResource AdvancedIcon}"
+                      Fill="Black"
+                      Stroke="Black"
+                      Width="24" Height="24"/>
+                <metro:DropDownCommandButton.Submenu>
+                    <metro:Submenu>
+                        <MenuItem Header="Link 1" />
+                        <MenuItem Header="Link 2" />
+                        <MenuItem Header="Link 3" />
+                    </metro:Submenu>
+                </metro:DropDownCommandButton.Submenu>
+            </metro:DropDownCommandButton>-->
+        </metro:ApplicationBar>
+    </metro:Window.ApplicationBar>
+
+</metro:Window>

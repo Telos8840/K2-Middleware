@@ -1,0 +1,53 @@
+﻿<UserControl x:Class="RCS.K2.NFLN.Views.PlayerRankingView"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             mc:Ignorable="d" 
+             xmlns:i="http://schemas.microsoft.com/expression/2010/interactivity"
+             xmlns:ei="http://schemas.microsoft.com/expression/2010/interactions"
+             xmlns:model="clr-namespace:RCS.K2.NFLN.Models"
+             DataContext="{Binding Source={StaticResource Locator}, Path=PlayerRankingViewModel}"
+             d:DesignHeight="700" d:DesignWidth="1000">
+    <UserControl.Resources>
+        <DataTemplate x:Key="SegmentTemplate" DataType="{x:Type model:Segments}">
+            <Grid >
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="100"/>
+                    <ColumnDefinition Width="350"/>
+                    <ColumnDefinition Width="350"/>
+                    <ColumnDefinition/>
+                </Grid.ColumnDefinitions>
+                <TextBlock Grid.Column="0" Foreground="White" FontSize="15" Text="{Binding ID}" HorizontalAlignment="Center"/>
+                <TextBlock Grid.Column="1" Foreground="White" FontSize="15" Text="{Binding Name}" HorizontalAlignment="Center"/>
+                <TextBlock Grid.Column="2" Foreground="White" FontSize="15" Text="{Binding Title}" HorizontalAlignment="Center"/>
+                <Button Grid.Column="3" Content="EDIT" >
+                    <i:Interaction.Triggers>
+                        <i:EventTrigger EventName="Click">
+                            <ei:CallMethodAction TargetObject="{Binding}" MethodName="LoadTables"/>
+                        </i:EventTrigger>
+                    </i:Interaction.Triggers>
+                </Button>
+            </Grid>
+        </DataTemplate>
+    </UserControl.Resources>
+    
+    <Grid Margin="20">
+        <Grid.RowDefinitions>
+            <RowDefinition Height=".1*"/>
+            <RowDefinition/>
+        </Grid.RowDefinitions>
+        <Grid Grid.Row="0">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="100"/>
+                <ColumnDefinition Width="350"/>
+                <ColumnDefinition Width="350"/>
+                <ColumnDefinition/>
+            </Grid.ColumnDefinitions>
+            <TextBlock Grid.Column="0" Text="ID" FontWeight="Bold" Foreground="White" FontSize="22" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+            <TextBlock Grid.Column="1" Text="Name" FontWeight="Bold" Foreground="White" FontSize="22" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+            <TextBlock Grid.Column="2" Text="Title" FontWeight="Bold" Foreground="White" FontSize="22" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+        </Grid>
+        <ListBox Margin="0, 5" Grid.Row="1" ItemsSource="{Binding Segments}" ItemTemplate="{StaticResource SegmentTemplate}"/>
+    </Grid>
+</UserControl>

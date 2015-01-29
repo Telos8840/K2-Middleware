@@ -1,0 +1,67 @@
+﻿<metro:Window x:Class="RCS.K2.NFLN.UI.AboutWindow"
+              xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+              xmlns:metro="http://schemas.codeplex.com/elysium"
+              xmlns:params="http://schemas.codeplex.com/elysium/params"
+              WindowStartupLocation="CenterScreen"
+              Background="#171717"
+              params:Design.Theme="Dark"
+              params:Design.AccentBrush="{x:Static metro:AccentBrushes.Red}"
+              params:Design.ContrastBrush="White"
+              Title="About" Height="395" Width="600" ResizeMode="NoResize"
+              BorderBrush="{x:Static metro:AccentBrushes.Red}" BorderThickness="3" 
+              WindowStyle="None" FontFamily="/RCS.K2.NFLN;component/Resources/#Gotham">
+
+    <metro:Window.TitleBar>
+        <Grid Background="{x:Static metro:AccentBrushes.Red}" MouseLeftButtonDown="DragWindow">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition/>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="30"/>
+            </Grid.ColumnDefinitions>
+            <TextBlock Grid.Column="0" Margin="10, 0" Text="ABOUT" VerticalAlignment="Center" Foreground="White" FontWeight="Light" FontSize="15" FontFamily="/RCS.K2.NFLN;component/Resources/#Gotham"/>
+            <Button Grid.Column="2" Content="X" Width="30" HorizontalAlignment="Center" Click="CloseAbout" />
+        </Grid>
+    </metro:Window.TitleBar>
+    
+    <Grid>
+        <!--<Border BorderBrush="{x:Static metro:AccentBrushes.Blue}" BorderThickness="3" Height="366.6">-->
+            <Grid>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="81*" />
+                    <RowDefinition Height="115*" />
+                    <RowDefinition Height="125*" />
+                    <RowDefinition Height="51*" />
+                </Grid.RowDefinitions>
+
+                <StackPanel Orientation="Horizontal" Grid.Row="0" Background="DarkRed">
+                    <Image HorizontalAlignment="Left" VerticalAlignment="Center" Margin="20, 20, 0, 20" Source="..\Assets\rcs32.ico" Height="40" Width="40" Stretch="Uniform"/>
+                    <TextBlock x:Name="Title" Margin="20,18,0,23" Foreground="White" FontWeight="DemiBold" FontSize="30" Height="40" Width="499" Text="Title"/>
+                </StackPanel>
+
+                <StackPanel Orientation="Vertical" Grid.Row="1" Margin="10">
+                    <StackPanel Margin="10, 10, 0, 0">
+                        <TextBlock x:Name="Product" FontSize="15" Foreground="White" Text="Product" />
+                        <TextBlock x:Name="Version" FontSize="15" Foreground="White" Text="Title" />
+                        <TextBlock x:Name="Company" FontSize="15" Foreground="White" Text="Company" />
+                        <TextBlock x:Name="Copyright" FontSize="15" Foreground="White" Text="Copyright" />
+                    </StackPanel>
+                </StackPanel>
+
+                <StackPanel Orientation="Vertical" Grid.Row="2" Margin="10">
+                    <TextBlock FontSize="15" FontWeight="DemiBold" Text="Product Details:" HorizontalAlignment="Left" Margin="9, 0, 0, 3" Foreground="White"/>
+                    <TextBox x:Name="Description" Width="563" IsReadOnly="True" FontSize="15" Text="Description" MaxHeight="80" TextWrapping="Wrap"
+                             ScrollViewer.VerticalScrollBarVisibility="Auto"
+                             ScrollViewer.HorizontalScrollBarVisibility="Hidden"
+                             ScrollViewer.CanContentScroll="True"
+                             Cursor="Arrow" Background="Transparent"/>
+                </StackPanel>
+            
+                <StackPanel Orientation="Horizontal" Grid.Row="3" HorizontalAlignment="Right" Margin="0, 8, 20, 12">
+                    <Button Height="Auto" Width="80" Content="Close" Click="CloseAbout"/>
+                </StackPanel>
+            
+            </Grid>
+        <!--</Border>-->
+    </Grid>
+</metro:Window>
